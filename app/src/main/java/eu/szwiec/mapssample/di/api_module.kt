@@ -2,6 +2,7 @@ package eu.szwiec.mapssample.di
 
 import com.squareup.moshi.Moshi
 import eu.szwiec.mapssample.api.LiveDataCallAdapterFactory
+import eu.szwiec.mapssample.api.MockZomatoService
 import eu.szwiec.mapssample.api.RestaurantsAdapter
 import eu.szwiec.mapssample.api.ZomatoService
 import eu.szwiec.mapssample.di.ApiProperties.ZOMATO_URL
@@ -13,7 +14,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 
 val apiModule = module {
-    single { createPlacesService() }
+    //single { createPlacesService() }
+    single { MockZomatoService() as ZomatoService }
 }
 
 object ApiProperties {
