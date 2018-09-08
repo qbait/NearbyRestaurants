@@ -9,6 +9,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.databinding.ActivityMainBinding
+import eu.szwiec.mapssample.util.animateCamera
 import eu.szwiec.mapssample.util.display
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mainViewModel.places.observe(this, Observer { places ->
             mainViewModel.setupList(places)
             mainViewModel.markers = map.display(places)
+        })
+
+        mainViewModel.clickedMarker.observe(this, Observer { marker ->
+            map.animateCamera(marker)
         })
     }
 

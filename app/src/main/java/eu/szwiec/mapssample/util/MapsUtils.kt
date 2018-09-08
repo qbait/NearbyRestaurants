@@ -12,6 +12,10 @@ fun GoogleMap.display(places: List<Place>): List<Marker> {
     return addMarkers(places)
 }
 
+fun GoogleMap.animateCamera(marker: Marker) {
+    animateCamera(CameraUpdateFactory.newLatLng(marker.position))
+}
+
 private fun GoogleMap.addMarkers(places: List<Place>) : List<Marker> {
     val markers = mutableListOf<Marker>()
     places.forEach {
