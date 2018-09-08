@@ -41,4 +41,8 @@ dependencies {
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:3.0.0-beta3'
     implementation "org.koin:koin-androidx-viewmodel:1.0.0-beta-6"
     implementation "androidx.lifecycle:lifecycle-extensions:1.1.1"
+
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 }

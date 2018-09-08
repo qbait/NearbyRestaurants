@@ -21,4 +21,5 @@
     string in this file.
     -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDm66G0dMqlqn21riFHHVWzZWPE0-7zMUo</string>
+    <string name="zomato_key" templateMergeStrategy="preserve" translatable="false">7e9081dd7a17c21a019a386735abcc1f</string>
 </resources>

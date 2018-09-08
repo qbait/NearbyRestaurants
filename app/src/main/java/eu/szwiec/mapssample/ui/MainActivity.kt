@@ -1,8 +1,9 @@
 package eu.szwiec.mapssample.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,5 +20,9 @@ class MainActivity : AppCompatActivity() {
             it.mainViewModel = mainViewModel
             it.setLifecycleOwner(this)
         }
+
+        mainViewModel.places.observe(this, Observer { response ->
+            mainViewModel.showPlaces(response)
+        })
     }
 }
