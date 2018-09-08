@@ -1,9 +1,12 @@
 package eu.szwiec.mapssample.ui
 
+import android.Manifest
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -22,14 +25,20 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.let {
-            it.mainViewModel = mainViewModel
-            it.setLifecycleOwner(this)
+        askPermission(Manifest.permission.ACCESS_FINE_LOCATION){
+            val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+            binding.let {
+                it.mainViewModel = mainViewModel
+                it.setLifecycleOwner(this)
+            }
+
+            val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+            mapFragment.getMapAsync(this)
+        }.onDeclined { e ->
+            Toast.makeText(this, "I can't work without permissions 😒", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
-        mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

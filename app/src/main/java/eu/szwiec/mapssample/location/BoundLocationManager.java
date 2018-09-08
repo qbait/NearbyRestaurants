@@ -1,5 +1,6 @@
 package eu.szwiec.mapssample.location;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Location;
 
@@ -27,6 +28,7 @@ public class BoundLocationManager extends LiveData<Location> {
         return instance;
     }
 
+    @SuppressLint("MissingPermission")
     private BoundLocationManager(final Context appContext) {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(appContext);
         createLocationRequest();
