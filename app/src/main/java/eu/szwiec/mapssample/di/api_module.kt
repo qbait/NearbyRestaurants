@@ -14,8 +14,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 
 val apiModule = module {
-    //single { createPlacesService() }
-    single { MockZomatoService() as ZomatoService }
+    single { createPlacesService() }
+    //single { MockZomatoService() as ZomatoService }
 }
 
 object ApiProperties {

@@ -5,12 +5,20 @@
     tools:context=".MainActivity">
 
     <data>
-        <variable name="item" type="eu.szwiec.mapssample.data.Place"/>
+        <variable
+            name="place"
+            type="eu.szwiec.mapssample.data.Place"/>
+        <variable
+            name="mainViewModel"
+            type="eu.szwiec.mapssample.ui.MainViewModel"/>
     </data>
 
     <androidx.constraintlayout.ConstraintLayout
+        android:clickable="true"
+        android:onClick="@{() -> mainViewModel.onClickListItem(place.name)}"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/icon"
@@ -31,7 +39,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{item.name}"
+            android:text="@{place.name}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="@{item.address}"
+            android:text="@{place.address}"
             android:singleLine="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="parent"

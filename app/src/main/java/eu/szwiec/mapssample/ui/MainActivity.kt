@@ -4,13 +4,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.databinding.ActivityMainBinding
+import eu.szwiec.mapssample.util.display
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val mainViewModel: MainViewModel by viewModel()
+
+    private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +27,16 @@ class MainActivity : AppCompatActivity() {
             it.setLifecycleOwner(this)
         }
 
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
         mainViewModel.places.observe(this, Observer { places ->
-            mainViewModel.showPlaces(places)
+            mainViewModel.setupList(places)
+            mainViewModel.markers = map.display(places)
         })
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
     }
 }
