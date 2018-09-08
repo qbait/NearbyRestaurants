@@ -22,6 +22,7 @@ class MainViewModel(context: Context, repository: Repository) : ViewModel() {
     val clickedMarker = MutableLiveData<Marker>()
 
     fun setupList(places: List<Place>) {
+        items.clear()
         items.addAll(places)
     }
 
