@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
             it.setLifecycleOwner(this)
         }
 
-        mainViewModel.places.observe(this, Observer { response ->
-            mainViewModel.showPlaces(response)
+        mainViewModel.places.observe(this, Observer { places ->
+            mainViewModel.showPlaces(places)
         })
     }
 }
