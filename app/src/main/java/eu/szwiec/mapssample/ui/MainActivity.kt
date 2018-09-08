@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
 
         mainViewModel.places.observe(this, Observer { places ->
             mainViewModel.setupList(places)
@@ -39,9 +43,5 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mainViewModel.clickedMarker.observe(this, Observer { marker ->
             map.animateCamera(marker)
         })
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
     }
 }
