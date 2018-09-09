@@ -52,4 +52,7 @@ dependencies {
 
     implementation 'com.github.florent37:runtime-permission-kotlin:1.0.2'
 
+    implementation "androidx.room:room-runtime:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+
 }

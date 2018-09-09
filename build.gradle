@@ -29,4 +29,5 @@ task clean(type: Delete) {
 ext.versions = [:]
 versions.retrofit = "2.4.0"
 versions.constraint_layout = "1.1.1"
+versions.room = "2.0.0-rc01"
 

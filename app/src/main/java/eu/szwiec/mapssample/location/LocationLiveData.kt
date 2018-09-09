@@ -34,12 +34,6 @@ class LocationLiveData(context: Context, interval: Long = 10000, fastestInterval
     @SuppressLint("MissingPermission")
     override fun onActive() {
         super.onActive()
-
-        mFusedLocationClient.lastLocation.addOnCompleteListener { task ->
-            if (task.isSuccessful)
-                value = task.result
-        }
-
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null)
     }
 
