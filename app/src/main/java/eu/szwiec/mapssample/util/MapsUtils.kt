@@ -35,5 +35,5 @@ private fun GoogleMap.zoom(places: List<Place>) {
     val routePadding = 200
     val latLngBounds = boundsBuilder.build()
 
-    this.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding))
+    this.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding))
 }
