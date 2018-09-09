@@ -9,6 +9,7 @@ import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.data.Place
 import eu.szwiec.mapssample.data.Status
 import eu.szwiec.mapssample.repository.Repository
+import eu.szwiec.mapssample.util.NonNullLiveData
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.collections.DiffObservableList
 
@@ -31,7 +32,7 @@ class MainViewModel(repository: Repository) : ViewModel() {
     }
     var markers: List<Marker> = emptyList()
     val clickedMarker = MutableLiveData<Marker>()
-    val status = MutableLiveData<Status>()
+    val status = NonNullLiveData(Status.LOADING)
 
     fun setupList(places: List<Place>) {
         items.update(places)

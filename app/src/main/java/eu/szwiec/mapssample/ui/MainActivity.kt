@@ -30,6 +30,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mainViewModel.status.observe(this, Observer { status ->
+            if(status == Status.SUCCESS) {
+                content.visibility = VISIBLE
+                progress.visibility = GONE
+            } else if (status == Status.LOADING) {
+                content.visibility = GONE
+                progress.visibility = VISIBLE
+            }
+        })
+
         askPermission(Manifest.permission.ACCESS_FINE_LOCATION) {
             val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
             binding.let {
@@ -43,31 +53,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             Toast.makeText(this, "I can't work without permissions 😒", Toast.LENGTH_SHORT).show()
             finish()
         }
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        map.setOnMapLoadedCallback {
 
-        mainViewModel.loadPlaces.observe(this, Observer { placesResource ->
-            placesResource.data?.let { places ->
-                mainViewModel.setupList(places)
-                mainViewModel.markers = map.display(places)
-            }
-        })
+            mainViewModel.loadPlaces.observe(this, Observer { placesResource ->
+                placesResource.data?.let { places ->
+                    mainViewModel.setupList(places)
+                    mainViewModel.markers = map.display(places)
 
-        mainViewModel.status.observe(this, Observer { status ->
-            if(status == Status.SUCCESS) {
-                content.visibility = VISIBLE
-                progress.visibility = GONE
-            } else if (status == Status.LOADING) {
-                content.visibility = GONE
-                progress.visibility = VISIBLE
-            }
-        })
+                }
+            })
 
-        mainViewModel.clickedMarker.observe(this, Observer { marker ->
-            map.animateCamera(marker)
-        })
+            mainViewModel.clickedMarker.observe(this, Observer { marker ->
+                map.animateCamera(marker)
+            })
+        }
     }
 }

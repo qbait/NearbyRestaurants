@@ -25,14 +25,14 @@ class RepositoryImpl(private val context: Context, private val location: Locatio
         val result = MediatorLiveData<Resource<List<Place>>>()
         result.value = Resource.loading(null)
 
-        result.addSource(location) {
+        result.addSource(location) { location ->
             Timber.d("location update")
 
             val key = context.getString(R.string.zomato_key)
-            val coordinates = Coordinates(it.latitude, it.longitude, System.currentTimeMillis())
+            val coordinates = Coordinates(location.latitude, location.longitude, System.currentTimeMillis())
             appExecutors.diskIO().execute { dao.insert(coordinates) }
 
-            val apiSource = zomatoService.nearbyRestaurants(key, it.latitude, it.longitude)
+            val apiSource = zomatoService.nearbyRestaurants(key, location.latitude, location.longitude)
 
             result.addSource(apiSource) { response ->
                 Timber.d("API update")
