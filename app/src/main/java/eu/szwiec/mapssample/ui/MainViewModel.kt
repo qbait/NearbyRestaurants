@@ -1,15 +1,12 @@
 package eu.szwiec.mapssample.ui
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.Marker
 import eu.szwiec.mapssample.BR
 import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.data.Place
-import eu.szwiec.mapssample.data.Status
 import eu.szwiec.mapssample.repository.Repository
-import eu.szwiec.mapssample.util.NonNullLiveData
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import me.tatarka.bindingcollectionadapter2.collections.DiffObservableList
 
@@ -26,13 +23,9 @@ class MainViewModel(repository: Repository) : ViewModel() {
         }
     })
     var itemBinding = ItemBinding.of<Place>(BR.place, R.layout.item).bindExtra(BR.mainViewModel, this)
-    val loadPlaces = Transformations.map(repository.getNearbyRestaurants()) { resource ->
-        status.value =  resource.status
-        resource
-    }
+    val loadPlaces = repository.getNearbyRestaurants()
     var markers: List<Marker> = emptyList()
     val clickedMarker = MutableLiveData<Marker>()
-    val status = NonNullLiveData(Status.LOADING)
 
     fun setupList(places: List<Place>) {
         items.update(places)
