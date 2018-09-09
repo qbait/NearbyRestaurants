@@ -1,7 +1,5 @@
 package eu.szwiec.mapssample.ui
 
-import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.Marker
@@ -10,19 +8,27 @@ import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.data.Place
 import eu.szwiec.mapssample.repository.Repository
 import me.tatarka.bindingcollectionadapter2.ItemBinding
+import me.tatarka.bindingcollectionadapter2.collections.DiffObservableList
 
 
 class MainViewModel(repository: Repository) : ViewModel() {
 
-    val items: ObservableList<Place> = ObservableArrayList()
+    val items: DiffObservableList<Place> = DiffObservableList(object : DiffObservableList.Callback<Place> {
+        override fun areItemsTheSame(oldItem: Place, newItem: Place): Boolean {
+            return areContentsTheSame(oldItem, newItem)
+        }
+
+        override fun areContentsTheSame(oldItem: Place, newItem: Place): Boolean {
+            return oldItem.name == newItem.name
+        }
+    })
     var itemBinding = ItemBinding.of<Place>(BR.place, R.layout.item).bindExtra(BR.mainViewModel, this)
     val places = repository.getNearbyRestaurants()
     var markers: List<Marker> = emptyList()
     val clickedMarker = MutableLiveData<Marker>()
 
     fun setupList(places: List<Place>) {
-        items.clear()
-        items.addAll(places)
+        items.update(places)
     }
 
     fun onClickListItem(name: String) {
