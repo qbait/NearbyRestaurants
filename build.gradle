@@ -28,6 +28,20 @@ task clean(type: Delete) {
 
 ext.versions = [:]
 versions.retrofit = "2.4.0"
+versions.maps = "15.0.1"
 versions.constraint_layout = "1.1.1"
 versions.room = "2.0.0-rc01"
+versions.lifecycle = "2.0.0-rc01"
+versions.appcompat = "1.0.0-rc01"
+versions.material = "1.0.0-rc01"
+versions.binding_collection_adapter = "3.0.0-beta1"
+versions.koin = "1.0.0-beta-6"
+versions.lottie = "2.5.6"
+versions.timber = "4.7.1"
+versions.logging_interceptor = "3.9.1"
+versions.permission = "1.0.2"
+
+versions.junit = "4.12"
+versions.espresso = "3.1.0-alpha4"
+versions.test_runner = "1.1.0-alpha4"
 
