@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="8dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/icon"
@@ -31,7 +32,8 @@
             android:padding="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_restaurant_black_24dp" />
+            android:src="@drawable/ic_restaurant_black_24dp"
+            android:contentDescription="icon" />
 
         <TextView
             android:id="@+id/name"

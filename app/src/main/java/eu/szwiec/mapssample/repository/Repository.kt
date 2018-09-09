@@ -3,7 +3,7 @@ package eu.szwiec.mapssample.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import eu.szwiec.checkittravelkit.repository.local.CoordinatesDao
+import eu.szwiec.mapssample.db.CoordinatesDao
 import eu.szwiec.mapssample.R
 import eu.szwiec.mapssample.api.ApiErrorResponse
 import eu.szwiec.mapssample.api.ApiSuccessResponse

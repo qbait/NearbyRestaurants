@@ -1,7 +1,7 @@
 package eu.szwiec.mapssample.di
 
-import eu.szwiec.checkittravelkit.repository.local.CoordinatesDao
-import eu.szwiec.checkittravelkit.repository.local.CoordinatesDb
+import eu.szwiec.mapssample.db.CoordinatesDao
+import eu.szwiec.mapssample.db.CoordinatesDb
 import org.koin.dsl.module.module
 
 val dbModule = module {

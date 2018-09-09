@@ -11,11 +11,11 @@ class RestaurantsAdapter {
 
     @FromJson
     fun fromJson(zomatoResults: ZomatoResults): List<Place> {
-        try {
-            return zomatoResults.nearby_restaurants.map { translate(it) }
+        return try {
+            zomatoResults.nearby_restaurants.map { translate(it) }
         } catch (e: Exception) {
             Timber.e("Parsing Visa requirements error: %s", e)
-            return emptyList()
+            emptyList()
         }
     }
 

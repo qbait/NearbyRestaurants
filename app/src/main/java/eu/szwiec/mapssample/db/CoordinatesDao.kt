@@ -1,4 +1,4 @@
-package eu.szwiec.checkittravelkit.repository.local
+package eu.szwiec.mapssample.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

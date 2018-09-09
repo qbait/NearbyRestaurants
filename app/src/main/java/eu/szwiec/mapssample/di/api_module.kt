@@ -2,15 +2,14 @@ package eu.szwiec.mapssample.di
 
 import com.squareup.moshi.Moshi
 import eu.szwiec.mapssample.api.LiveDataCallAdapterFactory
-import eu.szwiec.mapssample.api.MockZomatoService
 import eu.szwiec.mapssample.api.RestaurantsAdapter
 import eu.szwiec.mapssample.api.ZomatoService
 import eu.szwiec.mapssample.di.ApiProperties.ZOMATO_URL
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 
 
 val apiModule = module {

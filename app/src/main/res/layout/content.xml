@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
         <variable
             name="mainViewModel"
             type="eu.szwiec.mapssample.ui.MainViewModel" />
@@ -27,7 +26,7 @@
         <androidx.recyclerview.widget.RecyclerView
             app:itemBinding="@{mainViewModel.itemBinding}"
             app:items="@{mainViewModel.items}"
-            app:layoutManager="@{LayoutManagers.linear()}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />

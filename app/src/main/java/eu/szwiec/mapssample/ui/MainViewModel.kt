@@ -22,7 +22,7 @@ class MainViewModel(repository: Repository) : ViewModel() {
             return oldItem.name == newItem.name
         }
     })
-    var itemBinding = ItemBinding.of<Place>(BR.place, R.layout.item).bindExtra(BR.mainViewModel, this)
+    var itemBinding: ItemBinding<Place> = ItemBinding.of<Place>(BR.place, R.layout.item).bindExtra(BR.mainViewModel, this)
     val loadPlaces = repository.getNearbyRestaurants()
     var markers: List<Marker> = emptyList()
     val clickedMarker = MutableLiveData<Marker>()
